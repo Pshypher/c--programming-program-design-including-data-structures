@@ -36,6 +36,6 @@ int main()
     double volume = length * width * height * (1 - percent / 100);
     double area = volume / height;
 
-
+    // TODO: Calculate the new length and width of the candy bar
     return 0;
 }
