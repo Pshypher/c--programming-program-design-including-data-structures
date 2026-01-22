@@ -23,4 +23,6 @@ int main()
         output = " is zero";
 
     cout << num << output << endl;
+
+    return 0;
 }
