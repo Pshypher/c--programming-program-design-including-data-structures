@@ -111,4 +111,5 @@ set(CMAKE_CXX_STANDARD 14)
 # add_executable(c___programming_program_design_including_data_structures Ch5/Examples/Example5_20.cpp)
 # add_executable(c___programming_program_design_including_data_structures Ch5/Programming_Exercises/Programming_Exercise5_1.cpp)
 # add_executable(c___programming_program_design_including_data_structures Ch5/Programming_Exercises/Programming_Exercise5_2.cpp)
-add_executable(c___programming_program_design_including_data_structures Ch5/Programming_Exercises/Programming_Exercise5_3.cpp)
+add_executable(c___programming_program_design_including_data_structures Ch5/Programming_Exercises/Programming_Exercise5_3.cpp
+        Ch5/Programming_Exercises/Programming_Exercise5_4.cpp)
