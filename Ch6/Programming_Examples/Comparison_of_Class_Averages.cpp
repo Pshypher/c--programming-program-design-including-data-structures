@@ -16,6 +16,7 @@ using namespace std;
 // function prototypes
 void calculateAverage(ifstream& inp, double& courseAvg);
 void printResult(ofstream& outp, string courseID, int groupNo, double avg);
+void printHeading(ofstream& outp);
 
 int main()
 {
@@ -30,8 +31,8 @@ int main()
     ifstream group2;
     ofstream outfile;
 
-    group1.open("../../Ch6/Programming_Examples/group1.txt");
-    group2.open("../../Ch6/Programming_Examples/group2.txt");
+    group1.open("../Ch6/Programming_Examples/group1.txt");
+    group2.open("../Ch6/Programming_Examples/group2.txt");
 
     if (!group1 || !group2)
     {
@@ -40,15 +41,13 @@ int main()
         return 1;
     }
 
-    outfile.open("../../Ch6/Programming_Examples/student.out");
+    outfile.open("../Ch6/Programming_Examples/student.out");
     outfile << fixed << showpoint;
     outfile << setprecision(2);
 
     avgGroup1 = 0.0;
     avgGroup2 = 0.0;
     numberOfCourses = 0;
-
-    outfile << "Course No    Group No    Course Average" << endl;
 
     group1 >> courseId1;
     group2 >> courseId2;
@@ -64,6 +63,8 @@ int main()
         {
             calculateAverage(group1, avg1);
             calculateAverage(group2, avg2);
+            if (numberOfCourses == 0)
+                printHeading(outfile);
             printResult(outfile, courseId1, 1, avg1);
             printResult(outfile, courseId2, 2, avg2);
             avgGroup1 = avgGroup1 + avg1;
@@ -75,6 +76,9 @@ int main()
         group1 >> courseId1;
         group2 >> courseId2;
     }
+
+    outfile << "Group 1 -- ****" << endl;
+    outfile << "Group 2 -- ####" << endl;
 
     if (group1 && !group2)
         cout << "Ran out of data for group 2 before group 1." << endl;
@@ -112,10 +116,28 @@ void calculateAverage(ifstream& inp, double& courseAvg)
 
 void printResult(ofstream& outp, string courseID, int groupNo, double avg)
 {
+    int noOfSymbols;
+    int count;
+
     if (groupNo == 1)
-        outp << "  " << courseID << "   ";
+        outp << setw(4) << courseID << "    ";
     else
         outp << "        ";
 
-    outp << setw(8) << groupNo << setw(17) << avg << endl;
+    noOfSymbols = static_cast<int>(avg) / 2;
+
+    if (groupNo == 1)
+        for (count = 1; count <= noOfSymbols; count++)
+            outp << '*';
+    else
+        for (count = 1; count <= noOfSymbols; count++)
+            outp << '#';
+    outp << endl;
+}
+
+void printHeading(ofstream& outp)
+{
+    outp << "Course           Course Average" << endl;
+    outp << "  ID    0   10   20   30   40   50   60   70   80   90   100" << endl;
+    outp << "        |....|....|....|....|....|....|....|....|....|....|" << endl;
 }
