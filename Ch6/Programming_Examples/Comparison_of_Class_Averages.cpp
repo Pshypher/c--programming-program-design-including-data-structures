@@ -15,7 +15,7 @@ using namespace std;
 
 // function prototypes
 void calculateAverage(ifstream& inp, double& courseAvg);
-void printResult(ofstream& outp, string courseID, int groupNo, double avg);
+void printResult(ofstream& outp, string courseId, int groupNo, double avg);
 
 int main()
 {
@@ -110,10 +110,10 @@ void calculateAverage(ifstream& inp, double& courseAvg)
     courseAvg = totalScore / numberOfStudents;
 }
 
-void printResult(ofstream& outp, string courseID, int groupNo, double avg)
+void printResult(ofstream& outp, string courseId, int groupNo, double avg)
 {
     if (groupNo == 1)
-        outp << "  " << courseID << "   ";
+        outp << "  " << courseId << "   ";
     else
         outp << "        ";
 
