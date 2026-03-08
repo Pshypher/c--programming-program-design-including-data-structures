@@ -16,6 +16,8 @@ int main()
     cout << "isPalindrome(67876): " << isPalindrome("67876") << endl;
     cout << "isPalindrome(444244): " << isPalindrome("444244") << endl;
     cout << "isPalindrome(TryMeuUemyrt): " << isPalindrome("trymeuuemyrt") <<  endl;
+
+    return 0;
 }
 
 bool isPalindrome(string str)
