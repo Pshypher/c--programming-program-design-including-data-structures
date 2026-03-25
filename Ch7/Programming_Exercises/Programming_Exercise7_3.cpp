@@ -1,5 +1,6 @@
 //*************************************************************
 // Author: D.S. Malik
+// Maintainer: Pshypher
 //
 // Program: Pig Latin Strings
 // This program reads a string and outputs the pig latin form
@@ -11,19 +12,29 @@
 
 using namespace std;
 
+const string PUNCTUATIONS = ".,;:!?";
+
 bool isVowel(char ch);
 string rotate(string pStr);
+string pigLatinString(string line);
 string toPigLatin(string pStr);
+/**
+ *
+ * @param pStr string to be converted to pig-latin
+ * @param suffix set of characters that @param pStr could end up with
+ * @return true if @param pStr ends with one of the characters in @param suffix, false otherwise
+ */
+bool endsWith(string pStr, string suffix);
 
 int main()
 {
-    string str;
+    string sentence;
 
-    cout << "Enter a string: ";
-    cin >> str;
+    cout << "Enter a sentence: ";
+    getline(cin, sentence);
     cout << endl;
 
-    cout << "The pig Latin form of " << str << " is: " << toPigLatin(str) << endl;
+    cout << "The pig Latin form of \"" << sentence << "\" is: \"" << pigLatinString(sentence) << "\"" << endl;
 
     return 0;
 }
@@ -56,6 +67,27 @@ string rotate(string pStr)
     return rStr;
 }
 
+string pigLatinString(string line)
+{
+    string word = "";
+    string pigLatinSentence = "";
+    for (int i = 0; i < line.length(); i++)
+    {
+        if (line[i] == ' ')
+        {
+            pigLatinSentence += toPigLatin(word) + line[i];
+            word = "";
+        }
+        else
+            word = word + line[i];
+    }
+
+    if (!word.empty())
+        pigLatinSentence += toPigLatin(word);
+
+    return pigLatinSentence;
+}
+
 string toPigLatin(string pStr)
 {
     string::size_type len;
@@ -63,6 +95,15 @@ string toPigLatin(string pStr)
     bool foundVowel;
 
     string::size_type counter;
+
+    bool endsWithPunctuation = false;
+    char suffix;
+    if (endsWith(pStr, PUNCTUATIONS))
+    {
+        suffix = pStr[pStr.length() - 1];
+        pStr = pStr.substr(0, pStr.length() - 1);
+        endsWithPunctuation = true;
+    }
 
     if (isVowel(pStr[0]))
         pStr = pStr + "-way";
@@ -89,5 +130,17 @@ string toPigLatin(string pStr)
             pStr = pStr + "ay";
     }
 
+    if (endsWithPunctuation)
+        pStr = pStr + suffix;
+
     return pStr;
+}
+
+bool endsWith(string pStr, string suffix)
+{
+    string::size_type ind;
+
+    ind = pStr.find_first_of(suffix);
+
+    return ind != string::npos && ind == pStr.length() - 1;
 }

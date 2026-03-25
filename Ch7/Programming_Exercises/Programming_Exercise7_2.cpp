@@ -6,11 +6,14 @@
 
 using namespace std;
 
-const double AMOUNT_MANUSCIPRT_SALE = 25000;
-const double STANDARD_ROYALTY_RATE = 0.125;
-const double COPIES_SOLD_BENCHMARK_RATE_ROYALTY = 0.1;
-const double COPIES_SOLD_ABOVE_BENCHMARK_RATE_ROYALTY = 0.14;
-const int COPIES_SOLD_BENCHMARK = 4000;
+namespace bookConstants {
+    const double AMOUNT_MANUSCRIPT_SALE = 25000;
+    const double STANDARD_ROYALTY_RATE = 0.125;
+    const double BENCHMARK_ROYALTY_RATE = 0.1;
+    const double ABOVE_BENCHMARK_ROYALTY_RATE = 0.14;
+    const int BENCHMARK = 4000;
+}
+
 
 int main()
 {
@@ -27,14 +30,14 @@ int main()
     cin >> copiesSold;
     cout << endl;
 
-    double incomeOne = AMOUNT_MANUSCIPRT_SALE;
-    double incomeTwo = STANDARD_ROYALTY_RATE * price * copiesSold;
+    double incomeOne = bookConstants::AMOUNT_MANUSCRIPT_SALE;
+    double incomeTwo = bookConstants::STANDARD_ROYALTY_RATE * price * copiesSold;
     double incomeThree;
-    if (copiesSold <= COPIES_SOLD_BENCHMARK)
-        incomeThree = COPIES_SOLD_BENCHMARK_RATE_ROYALTY * price * copiesSold;
+    if (copiesSold <= bookConstants::BENCHMARK)
+        incomeThree = bookConstants::BENCHMARK_ROYALTY_RATE * price * copiesSold;
     else
-        incomeThree = COPIES_SOLD_BENCHMARK_RATE_ROYALTY * price * COPIES_SOLD_BENCHMARK +
-            (copiesSold - COPIES_SOLD_BENCHMARK) * COPIES_SOLD_ABOVE_BENCHMARK_RATE_ROYALTY * price;
+        incomeThree = bookConstants::BENCHMARK_ROYALTY_RATE * price * bookConstants::BENCHMARK +
+            (copiesSold - bookConstants::BENCHMARK) * bookConstants::ABOVE_BENCHMARK_ROYALTY_RATE * price;
 
     cout << "A. if you want to be paid $5,000 upon delivery of the final manuscript  and $20,000 when the novel is"
         << " published, you get $" << incomeOne << endl;
