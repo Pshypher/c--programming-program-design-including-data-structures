@@ -42,6 +42,8 @@ int main()
     createInputFile("numbers.txt", infile);
     createOutputFile("numbers.out", outfile);
 
+    cout << "Processing..." << endl;
+
     getNumber(number, infile);
     while (infile)
     {
@@ -69,12 +71,12 @@ void initialize(int& zeroCount, int& oddCount, int& evenCount, int& sum, int& co
 
 void createInputFile(string filename, ifstream& inputFile)
 {
-    inputFile.open("../Ch6/Programming_Exercises/" + filename);
+    inputFile.open("../../Ch6/Programming_Exercises/" + filename);
 }
 
 void createOutputFile(string filename, ofstream& outputFile)
 {
-    outputFile.open("../Ch6/Programming_Exercises/" + filename);
+    outputFile.open("../../Ch6/Programming_Exercises/" + filename);
 }
 
 void getNumber(int& num, ifstream& inputFile)
