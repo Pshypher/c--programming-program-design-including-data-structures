@@ -22,7 +22,7 @@ namespace tax {
 
 enum maritalStatus {SINGLE, MARRIED};
 
-void getData(maritalStatus& status, int& numberOfChildren, double& income);
+void input(maritalStatus& status, int& numberOfChildren, double& income);
 double taxAmount(maritalStatus status, int numberOfChildren, double taxableIncome);
 void deductPensionContributionPercent(int pos, double& income);
 maritalStatus getMaritalStatus(char ch);
@@ -36,12 +36,12 @@ int main()
 
     cout << fixed << showpoint << setprecision(2);
 
-    getData(status, numberOfChildren, totalIncome);
+    input(status, numberOfChildren, totalIncome);
     cout << "Federal income tax: $" << taxAmount(status, numberOfChildren, totalIncome) << endl;
 
 }
 
-void getData(maritalStatus& status, int& numberOfChildren, double& totalIncome)
+void input(maritalStatus& status, int& numberOfChildren, double& totalIncome)
 {
     char ch;
     cout << "Are you married(m|M) or single(s|S)? ";
