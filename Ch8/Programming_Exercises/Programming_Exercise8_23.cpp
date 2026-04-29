@@ -9,10 +9,8 @@ using namespace std;
 const int ROW_SIZE = 3;
 const int COL_SIZE = 3;
 
-void initialize(int grid[][COL_SIZE], int rowSize, int colSize);
 void setRandomNumbersOnGrid(int grid[][COL_SIZE], int rowSize, int colSize);
 void setMagicNumber(int grid[][COL_SIZE], int& magicNumber, int rowSize, int colSize);
-bool contains(int grid[][COL_SIZE], int value, int rowSize, int colSize);
 bool isMagicSquare(int grid[][COL_SIZE], int magicNumber, int rowSize, int colSize);
 
 int main()
@@ -26,7 +24,6 @@ int main()
     int freq = 0;
     while (freq < 1000000)
     {
-        initialize(grid, ROW_SIZE, COL_SIZE);
         setRandomNumbersOnGrid(grid, ROW_SIZE, COL_SIZE);
         setMagicNumber(grid, magicNumber, ROW_SIZE, COL_SIZE);
         if (isMagicSquare(grid, magicNumber, ROW_SIZE, COL_SIZE))
@@ -37,13 +34,6 @@ int main()
     cout << "We got " << count << " magic squares out of " << freq << " tries.";
 
     return 0;
-}
-
-void initialize(int grid[][COL_SIZE], int rowSize, int colSize)
-{
-    for (int i = 0; i < rowSize; i++)
-        for (int j = 0; j < colSize; j++)
-            grid[i][j] = 0;
 }
 
 void setRandomNumbersOnGrid(int grid[][COL_SIZE], int rowSize, int colSize)
@@ -64,15 +54,6 @@ void setMagicNumber(int grid[][COL_SIZE], int& magicNumber, int rowSize, int col
             total += grid[i][j];
 
     magicNumber = total / rowSize;
-}
-
-bool contains(int grid[][COL_SIZE], int value, int rowSize, int colSize)
-{
-    for (int i = 0; i < rowSize; i++)
-        for (int j = 0; j < colSize; j++)
-            if (grid[i][j] == value)
-                return true;
-    return false;
 }
 
 bool isMagicSquare(int grid[][COL_SIZE], int magicNumber, int rowSize, int colSize)
