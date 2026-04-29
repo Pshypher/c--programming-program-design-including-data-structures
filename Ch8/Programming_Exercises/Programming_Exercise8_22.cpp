@@ -11,16 +11,17 @@ const int PRIME_NUMBERS_SIZE = 1230;
 void setTestParameter(int& m);
 void setPrimeNumbers(int primes[], int length);
 bool isPrime(int value);
+void printCompositeProducts(int m, int primes[], int length);
 
 int main()
 {
     int primeNumbers[PRIME_NUMBERS_SIZE];
-    int t;
+    int m;
 
-    setTestParameter(t);
-    if (t < 2 || t > 100000000)
+    setTestParameter(m);
+    if (m < 2 || m > 100000000)
     {
-        cout << t << " is not between 2 and 100,000,000" << endl;
+        cout << m << " is not between 2 and 100,000,000" << endl;
         return -1;
     }
 
@@ -29,21 +30,24 @@ int main()
     bool isPrime = true;
     for (int num : primeNumbers)
     {
-        if (t == num)
+        if (m == num)
             break;
 
-        if (t % num == 0)
+        if (m % num == 0)
         {
-            cout << num << " is a prime factor of " << t << endl;
             isPrime = false;
+            break;
         }
     }
-    cout << endl;
 
     if (isPrime)
-        cout << t << " is a prime number." << endl;
+        cout << m << " is a prime number." << endl;
     else
-        cout << t  << " is not a prime number." << endl;
+    {
+        cout << m  << " is not a prime number." << endl;
+        cout << endl;
+        printCompositeProducts(m, primeNumbers, PRIME_NUMBERS_SIZE);
+    }
 
     return 0;
 }
@@ -78,4 +82,22 @@ bool isPrime(int value)
             return false;
 
     return true;
+}
+
+void printCompositeProducts(int m, int primes[], int length)
+{
+    int productCount = 0;
+    cout << m << " = ";
+    for (int i = 0; i < length && m > 1; i++)
+    {
+        while (m % primes[i] == 0)
+        {
+            if (productCount > 0)
+                cout << " * ";
+            cout << primes[i];
+            m = m / primes[i];
+            productCount++;
+        }
+    }
+    cout << endl;
 }
